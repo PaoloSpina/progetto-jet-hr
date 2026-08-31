@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model SalaryCalculation {
+  id                         String   @id @default(cuid())
+  grossAnnualSalary          Decimal  @db.Decimal(12, 2)
+  monthlyPayments            Int
+  employeeContributions      Decimal  @db.Decimal(12, 2)
+  taxableIncome              Decimal  @db.Decimal(12, 2)
+  grossIrpef                 Decimal  @db.Decimal(12, 2)
+  employmentDeduction        Decimal  @db.Decimal(12, 2)
+  netIrpef                   Decimal  @db.Decimal(12, 2)
+  regionalTax                Decimal  @db.Decimal(12, 2)
+  municipalTax               Decimal  @db.Decimal(12, 2)
+  totalTaxesAndContributions Decimal  @db.Decimal(12, 2)
+  netAnnualSalary            Decimal  @db.Decimal(12, 2)
+  netMonthlySalary           Decimal  @db.Decimal(12, 2)
+  effectiveTaxRate           Decimal  @db.Decimal(5, 2)
+  createdAt                  DateTime @default(now())
+
+  @@index([createdAt])
+}
