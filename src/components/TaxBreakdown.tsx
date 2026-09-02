@@ -9,7 +9,7 @@ export function TaxBreakdown({ calculation }: TaxBreakdownProps) {
   return (
     <article className="section-card" aria-labelledby="tax-breakdown-title">
       <p className="section-eyebrow">Dettaglio del calcolo</p>
-      <h2 id="tax-breakdown-title">Scomposizione fiscale</h2>
+      <h2 id="tax-breakdown-title">Stima fiscale e contributiva</h2>
 
       <dl className="breakdown-list">
         <div className="breakdown-row">
@@ -33,16 +33,28 @@ export function TaxBreakdown({ calculation }: TaxBreakdownProps) {
           <dd>+ {formatCurrency(calculation.employmentDeduction)}</dd>
         </div>
         <div className="breakdown-row">
+          <dt>Ulteriore detrazione lavoro dipendente</dt>
+          <dd>+ {formatCurrency(calculation.additionalEmploymentDeduction)}</dd>
+        </div>
+        <div className="breakdown-row">
           <dt>IRPEF netta</dt>
           <dd>- {formatCurrency(calculation.netIrpef)}</dd>
         </div>
         <div className="breakdown-row">
-          <dt>Addizionale regionale</dt>
+          <dt>Addizionale regionale Lombardia</dt>
           <dd>- {formatCurrency(calculation.regionalTax)}</dd>
         </div>
         <div className="breakdown-row">
-          <dt>Addizionale comunale</dt>
+          <dt>Addizionale comunale Milano</dt>
           <dd>- {formatCurrency(calculation.municipalTax)}</dd>
+        </div>
+        <div className="breakdown-row">
+          <dt>Somma esente / beneficio lavoro dipendente</dt>
+          <dd>+ {formatCurrency(calculation.employeeTaxFreeBonus)}</dd>
+        </div>
+        <div className="breakdown-row">
+          <dt>Totale imposte</dt>
+          <dd>- {formatCurrency(calculation.totalTaxes)}</dd>
         </div>
         <div className="breakdown-row">
           <dt>Totale tasse e contributi</dt>

@@ -10,9 +10,12 @@ export type SalaryCalculationResult = SalaryCalculationInput & {
   taxableIncome: number;
   grossIrpef: number;
   employmentDeduction: number;
+  additionalEmploymentDeduction: number;
   netIrpef: number;
   regionalTax: number;
   municipalTax: number;
+  employeeTaxFreeBonus: number;
+  totalTaxes: number;
   totalTaxesAndContributions: number;
   netAnnualSalary: number;
   netMonthlySalary: number;

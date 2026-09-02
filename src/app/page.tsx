@@ -71,10 +71,11 @@ export default async function HomePage() {
           <article className="info-card">
             <h2>Disclaimer</h2>
             <p>
-              Il calcolo e&apos; una simulazione semplificata e ha esclusivamente finalita&apos;
-              informative. Il netto effettivo puo&apos; variare in base al contratto, alle
-              detrazioni, alle addizionali, alla situazione personale e ad altri elementi
-              fiscali e contributivi.
+              Il calcolo e&apos; una simulazione semplificata basata su un caso standard di
+              lavoratore dipendente residente a Milano. Non costituisce un cedolino paga, un
+              calcolo fiscale certificato o consulenza fiscale. Contributi, imposte e netto
+              effettivi possono variare in funzione di CCNL, inquadramento, datore di lavoro,
+              situazione personale e altre variabili.
             </p>
           </article>
           <article className="info-card">

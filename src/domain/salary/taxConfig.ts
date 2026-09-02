@@ -1,12 +1,14 @@
-// Prototype fiscal configuration.
-// These rules intentionally simplify the Italian tax domain and are centralized here so
-// the UI and persistence layers remain independent from fiscal assumptions.
+// Configurazione fiscale del prototipo per il caso standard 2026: dipendente privato,
+// residente a Milano e impiegato per l'intero anno.
 export const TAX_CONFIG = {
-  employeeSocialSecurityRate: 0.0919,
+  year: 2026,
+  // Semplificazione del prototipo: il 9,19% non rappresenta tutti i possibili CCNL,
+  // inquadramenti o trattamenti INPS.
+  employeeContributionRate: 0.0919,
   maxGrossAnnualSalary: 500000,
   irpefBrackets: [
     { upTo: 28000, rate: 0.23 },
-    { upTo: 50000, rate: 0.35 },
+    { upTo: 50000, rate: 0.33 },
     { upTo: Number.POSITIVE_INFINITY, rate: 0.43 },
   ],
   employmentDeduction: {
@@ -19,8 +21,27 @@ export const TAX_CONFIG = {
     secondBandDivisor: 13000,
     thirdBandBaseAmount: 1910,
     thirdBandDivisor: 22000,
+    additionalAmount: 65,
+    additionalBandMinExclusive: 25000,
+    additionalBandMax: 35000,
   },
-  regionalTax: {
+  additionalEmploymentDeduction: {
+    fullAmount: 1000,
+    fullAmountBandMinExclusive: 20000,
+    fullAmountBandMax: 32000,
+    taperBandMax: 40000,
+    taperBandDivisor: 8000,
+  },
+  employeeTaxFreeBonus: {
+    // Semplificazione del prototipo: employmentIncome coincide con la RAL e il
+    // beneficio è aggiunto al netto, senza ridurre l'imponibile IRPEF.
+    brackets: [
+      { upTo: 8500, rate: 0.071 },
+      { upTo: 15000, rate: 0.053 },
+      { upTo: 20000, rate: 0.048 },
+    ],
+  },
+  lombardyRegionalTax: {
     region: "Lombardia",
     brackets: [
       { upTo: 15000, rate: 0.0123 },
@@ -29,7 +50,7 @@ export const TAX_CONFIG = {
       { upTo: Number.POSITIVE_INFINITY, rate: 0.0173 },
     ],
   },
-  municipalTax: {
+  milanMunicipalTax: {
     city: "Milano",
     exemptionThreshold: 23000,
     rate: 0.008,
