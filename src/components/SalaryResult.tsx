@@ -1,3 +1,6 @@
+"use client";
+
+import { useLayoutEffect, useRef } from "react";
 import { SalaryChart } from "@/components/SalaryChart";
 import { TaxBreakdown } from "@/components/TaxBreakdown";
 import type { StoredSalaryCalculation } from "@/domain/salary/salary.types";
@@ -7,6 +10,55 @@ import { formatPercentage } from "@/lib/formatPercentage";
 type SalaryResultProps = {
   calculation: StoredSalaryCalculation | null;
 };
+
+type FittedMetricValueProps = {
+  children: string;
+  className?: string;
+};
+
+function FittedMetricValue({ children, className = "" }: FittedMetricValueProps) {
+  const valueRef = useRef<HTMLParagraphElement>(null);
+
+  useLayoutEffect(() => {
+    const value = valueRef.current;
+
+    if (!value) {
+      return;
+    }
+
+    const fitValue = () => {
+      value.style.fontSize = "";
+
+      const availableWidth = value.clientWidth;
+      const contentWidth = value.scrollWidth;
+
+      if (availableWidth === 0 || contentWidth <= availableWidth) {
+        return;
+      }
+
+      const currentFontSize = Number.parseFloat(window.getComputedStyle(value).fontSize);
+      const fittedFontSize = Math.max(
+        1,
+        (currentFontSize * Math.max(availableWidth - 2, 1)) / contentWidth,
+      );
+
+      value.style.fontSize = `${fittedFontSize}px`;
+    };
+
+    fitValue();
+
+    const observer = new ResizeObserver(fitValue);
+    observer.observe(value);
+
+    return () => observer.disconnect();
+  }, [children]);
+
+  return (
+    <p ref={valueRef} className={`metric-value ${className}`}>
+      {children}
+    </p>
+  );
+}
 
 export function SalaryResult({ calculation }: SalaryResultProps) {
   if (!calculation) {
@@ -33,11 +85,13 @@ export function SalaryResult({ calculation }: SalaryResultProps) {
         <div className="summary-grid">
           <div className="metric-card">
             <p className="metric-label">Netto annuale stimato</p>
-            <p className="metric-value positive">{formatCurrency(calculation.netAnnualSalary)}</p>
+            <FittedMetricValue className="positive">
+              {formatCurrency(calculation.netAnnualSalary)}
+            </FittedMetricValue>
           </div>
           <div className="metric-card">
             <p className="metric-label">Netto mensile stimato</p>
-            <p className="metric-value">{formatCurrency(calculation.netMonthlySalary)}</p>
+            <FittedMetricValue>{formatCurrency(calculation.netMonthlySalary)}</FittedMetricValue>
           </div>
         </div>
 
