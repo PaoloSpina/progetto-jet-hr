@@ -148,13 +148,6 @@ select:focus-visible {
   line-height: 1.65;
 }
 
-.hero-note {
-  padding: 22px;
-  border-radius: var(--radius-md);
-  background: linear-gradient(180deg, rgba(23, 92, 211, 0.08), rgba(23, 92, 211, 0.02));
-  border: 1px solid rgba(23, 92, 211, 0.12);
-}
-
 @media (min-width: 1024px) {
   .hero-copy h1 {
     white-space: nowrap;

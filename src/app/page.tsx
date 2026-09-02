@@ -44,8 +44,13 @@ export default async function HomePage() {
               </p>
             </div>
           </div>
-          <div className="hero-note">
-            <p className="note-label">Assunzioni della simulazione</p>
+        </section>
+      </div>
+
+      <div className="page-shell">
+        <div className="stack">
+          <section className="section-card" aria-label="Assunzioni della simulazione">
+            <p className="section-eyebrow">Assunzioni della simulazione</p>
             <ul className="plain-list">
               <li>Dipendente a tempo indeterminato</li>
               <li>Impiegato</li>
@@ -54,15 +59,13 @@ export default async function HomePage() {
               <li>Nessun familiare a carico</li>
               <li>Nessun altro reddito</li>
             </ul>
-          </div>
-        </section>
-      </div>
+          </section>
 
-      <div className="page-shell">
-        <SalaryCalculator
-          initialCalculations={calculations}
-          initialHistoryMessage={historyMessage}
-        />
+          <SalaryCalculator
+            initialCalculations={calculations}
+            initialHistoryMessage={historyMessage}
+          />
+        </div>
 
         <section className="info-grid" aria-label="Informazioni importanti">
           <article className="info-card">
