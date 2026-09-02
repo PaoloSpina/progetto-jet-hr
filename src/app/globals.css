@@ -57,10 +57,19 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
+.hero-shell,
+.page-shell {
+  margin: 0 auto;
+}
+
+.hero-shell {
+  width: min(calc(100% - 32px), 1200px);
+  padding-top: 40px;
+}
+
 .page-shell {
   width: min(calc(100% - 32px), var(--max-width));
-  margin: 0 auto;
-  padding: 40px 0 56px;
+  padding-bottom: 56px;
 }
 
 .hero-card,
@@ -77,11 +86,15 @@ select:focus-visible {
 
 .hero-card {
   display: grid;
-  grid-template-columns: 1.7fr 1fr;
-  gap: 24px;
+  gap: 18px;
   padding: 28px;
   border-radius: var(--radius-lg);
   margin-bottom: 28px;
+}
+
+.hero-copy {
+  display: grid;
+  gap: 14px;
 }
 
 .eyebrow,
@@ -105,15 +118,24 @@ select:focus-visible {
 }
 
 .hero-copy h1 {
-  font-size: clamp(2.2rem, 5vw, 4.2rem);
-  line-height: 0.95;
-  max-width: 12ch;
+  font-size: clamp(1.95rem, 2.8vw, 3.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: minmax(max-content, 1.5fr) minmax(max-content, 0.8fr) minmax(320px, 1.5fr);
+  align-items: center;
+  column-gap: clamp(18px, 2.4vw, 32px);
+  row-gap: 14px;
 }
 
 .hero-subtitle {
-  margin: 12px 0 8px;
-  font-size: 1.15rem;
+  margin: 0;
+  font-size: 1.05rem;
   font-weight: 700;
+  color: var(--text);
 }
 
 .hero-description,
@@ -131,6 +153,16 @@ select:focus-visible {
   border-radius: var(--radius-md);
   background: linear-gradient(180deg, rgba(23, 92, 211, 0.08), rgba(23, 92, 211, 0.02));
   border: 1px solid rgba(23, 92, 211, 0.12);
+}
+
+@media (min-width: 1024px) {
+  .hero-copy h1 {
+    white-space: nowrap;
+  }
+
+  .hero-description {
+    max-width: 44ch;
+  }
 }
 
 .plain-list {
@@ -391,8 +423,18 @@ select:focus-visible {
   border-radius: var(--radius-md);
 }
 
+@media (max-width: 1023px) {
+  .hero-content {
+    grid-template-columns: minmax(max-content, 1fr) minmax(0, 1fr);
+  }
+
+  .hero-description {
+    grid-column: 1 / -1;
+    max-width: 52ch;
+  }
+}
+
 @media (max-width: 1024px) {
-  .hero-card,
   .calculator-grid,
   .info-grid {
     grid-template-columns: 1fr;
@@ -400,9 +442,14 @@ select:focus-visible {
 }
 
 @media (max-width: 768px) {
+  .hero-shell {
+    width: min(calc(100% - 20px), 1200px);
+    padding-top: 20px;
+  }
+
   .page-shell {
     width: min(calc(100% - 20px), var(--max-width));
-    padding: 20px 0 36px;
+    padding-bottom: 36px;
   }
 
   .hero-card,
@@ -412,6 +459,22 @@ select:focus-visible {
   .history-card,
   .info-card {
     padding: 18px;
+  }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(1.9rem, 9vw, 2.8rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-description {
+    grid-column: auto;
+    max-width: none;
   }
 
   .summary-grid,
