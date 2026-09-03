@@ -95,7 +95,7 @@ export function SalaryResult({ calculation }: SalaryResultProps) {
           </div>
         </div>
 
-        <p className="helper-text">
+        <p className="result-insight">
           Tasse e contributi incidono per circa {formatPercentage(calculation.effectiveTaxRate)}{" "}
           della RAL.
         </p>

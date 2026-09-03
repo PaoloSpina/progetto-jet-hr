@@ -52,15 +52,15 @@ export function TaxBreakdown({ calculation }: TaxBreakdownProps) {
           <dt>Somma esente / beneficio lavoro dipendente</dt>
           <dd>+ {formatCurrency(calculation.employeeTaxFreeBonus)}</dd>
         </div>
-        <div className="breakdown-row">
+        <div className="breakdown-row breakdown-row-total">
           <dt>Totale imposte</dt>
           <dd>- {formatCurrency(calculation.totalTaxes)}</dd>
         </div>
-        <div className="breakdown-row">
+        <div className="breakdown-row breakdown-row-total">
           <dt>Totale tasse e contributi</dt>
           <dd>- {formatCurrency(calculation.totalTaxesAndContributions)}</dd>
         </div>
-        <div className="breakdown-row">
+        <div className="breakdown-row breakdown-row-net">
           <dt>Netto annuale</dt>
           <dd>{formatCurrency(calculation.netAnnualSalary)}</dd>
         </div>
